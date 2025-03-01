@@ -20,7 +20,8 @@
   "homepage": "https://github.com/MoRgAn005/frontend-project-44#readme",
   "bin": {
     "brain-games": "bin/brain-games.js",
-    "brain-even": "bin/brain-even.js"
+    "brain-even": "bin/brain-even.js",
+    "brain-calc": "bin/brain-calc.js"
   },
   "dependencies": {
     "react": "^19.0.0",
