@@ -1,29 +1,39 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
+import { FlatCompat } from "@eslint/eslintrc";
+import importPlugin from "eslint-plugin-import";
 
-/** @type {import('eslint').Linter.Config[]} */
+const compat = new FlatCompat({
+  recommendedConfig: pluginJs.configs.recommended,
+});
+
 export default [
   {
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node
-      }
-    },
+    languageOptions: { globals: globals.browser },
+    plugins: { import: importPlugin },
     rules: {
-      "no-console": "off",
-      "import/extensions": "off"
+      ...importPlugin.configs.recommended.rules,
     },
-    settings: {
-      react: {
-        version: "detect"
-      }
-    }
   },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
+  ...compat.extends("airbnb-base"),
+  {
+    rules: {
+      "no-underscore-dangle": [
+        "error",
+        {
+          allow: ["__filename", "__dirname"],
+        },
+      ],
+      "import/extensions": [
+        "error",
+        {
+          js: "always",
+        },
+      ],
+      "import/no-named-as-default": "off",
+      "import/no-named-as-default-member": "off",
+      "no-console": "off",
+      "import/no-extraneous-dependencies": "off",
+    },
+  },
 ];

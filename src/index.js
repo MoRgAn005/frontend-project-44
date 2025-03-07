@@ -18,10 +18,8 @@ const runGame = (description, getGameData) => {
             console.log(`Let's try again, ${name}!`);
             return;
         }
-
         console.log('Correct!');
     }
-
     console.log(`Congratulations, ${name}!`);
 };
 

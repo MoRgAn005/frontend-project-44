@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import readlineSync from "readline-sync";
-import getGameData, { description } from "../src/games/progression";
+import getGameData, { description } from "../src/games/progression.js";
 
 console.log('Welcome to the Brain Games!');
 const name = readlineSync.question("May I have your name? ");
